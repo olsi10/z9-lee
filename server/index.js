@@ -4,7 +4,7 @@ const dotenv = require("dotenv"); //.env 파일에 접근 가능한 모듈
 dotenv.config();
 
 const oracledb = require("oracledb");
-const dbConfig = require("./dbconfig.js");
+const dbConfig = require("./config/key");
 
 app.listen(3000, () => {
   console.log("Start Sever : localhost:3000");
@@ -37,7 +37,7 @@ async function selectDatabase() {
 
   console.log("!!!!! db select !!!!!");
 
-  let result = await connection.execute("select * from POST2", binds, options);
+  let result = await connection.execute("select * from TABLE1", binds, options);
 
   console.log("!!!!! db response !!!!!");
   console.log(result.rows[0]);
