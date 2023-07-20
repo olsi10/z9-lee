@@ -36,3 +36,97 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Link 태그 설정 */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* 인트로 영상 태그 설정 */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Main.jsx  -> ScrollDiv */
+.scroll img {
+  margin-left: 30px;
+}
+
+/* 영문 폰트 */
+@font-face {
+  font-family: "inter";
+  font-weight: 100;
+  src: url('./fonts/eng/Inter-Thin.ttf');
+}
+
+@font-face {
+  font-family: "inter";
+  font-weight: 200;
+  src: url('./fonts/eng/Inter-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: "inter";
+  font-weight: 300;
+  src: url('./fonts/eng/Inter-Light.ttf');
+}
+
+@font-face {
+  font-family: "inter";
+  font-weight: 500;
+  src: url('./fonts/eng/Inter-Medium.ttf');
+}
+
+@font-face {
+  font-family: "inter";
+  font-weight: 700;
+  src: url('./fonts/eng/Inter-Bold.ttf');
+}
+
+@font-face {
+  font-family: "inter";
+  font-weight: 800;
+  src: url('./fonts/eng/Inter-ExtraBold.ttf');
+}
+
+/* 한글 폰트 */
+@font-face {
+  font-family: "PyeongChangPeace";
+  src: url('./fonts/kor/PyeongChangPeace-Bold.ttf');
+}
+
+@font-face {
+  font-family: "Noto";
+  font-weight: 100;
+  src: url('./fonts/kor/NotoSansKR-Thin.otf');
+}
+
+@font-face {
+  font-family: "Noto";
+  font-weight: 200;
+  src: url('./fonts/kor/NotoSansKR-Light.otf');
+}
+
+@font-face {
+  font-family: "Noto";
+  font-weight: 500;
+  src: url('./fonts/kor/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+  font-family: "Noto";
+  font-weight: 700;
+  src: url('./fonts/kor/NotoSansKR-Bold.otf');
+}
