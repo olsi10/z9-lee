@@ -18,6 +18,7 @@ const Div = styled.div`
   grid-template-rows: 80% 20%;
   > img {
     width: 100%;
+    height: 100%;
   }
 `;
 

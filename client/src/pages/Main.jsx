@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import intro1 from "../assets/video/intro1.mp4";
 import intro2 from "../assets/video/intro2.mp4";
 import intro3 from "../assets/video/intro3.mp4";
@@ -31,7 +31,7 @@ const Main = () => {
   }
 
   // product 이미지 불러오기
-  const [products, setProducts] = useState([]);
+  const [product, setProducts] = useState([]);
 
   useEffect(() => {
     // JSON 파일에서 상품 데이터를 불러와 상태에 설정

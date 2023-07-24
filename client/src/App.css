@@ -130,3 +130,36 @@ video {
   font-weight: 700;
   src: url('./fonts/kor/NotoSansKR-Bold.otf');
 }
+
+
+/* Shop.js 롤링 배너 */
+/* 움직이는 텍스트 */
+.animated-title {
+  font-size:24px;
+  font-family:Noto;
+  font-weight:300;
+  position: relative;
+  background-color: #ECF1F4;
+  width: 100%;
+  max-width:100%;
+  height: auto;
+  padding: 160px 0px 0px 0px;
+  overflow-x: hidden;
+  overflow-y: hidden; 
+}
+.animated-title .track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (hover: hover) and (min-width: 700px){
+.animated-title .content {
+  -webkit-transform: translateY(calc(100% - 8rem));
+  transform: translateY(calc(100% - 8rem));
+  }
+}
