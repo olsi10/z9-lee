@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import mainImg from "../assets/shop/main.jpg";
-import product from "../json/shopProduct.json";
+// import product from "../json/shopProduct.json";
 
 const Shop = () => {
   return (
@@ -76,13 +76,13 @@ const Button = styled.div`
   }
 `;
 
-const BillBoard = styled.div`
-  width: 100%;
-  height: 72px;
-  background-color: #ECF1F4;
-  padding-top: 40px;
-  font-size: 24px;
-  overflow: hidden;
-`;
+// const BillBoard = styled.div`
+//   width: 100%;
+//   height: 72px;
+//   background-color: #ECF1F4;
+//   padding-top: 40px;
+//   font-size: 24px;
+//   overflow: hidden;
+// `;
 
 export default Shop;

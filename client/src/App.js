@@ -8,6 +8,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Nav from "./components/Navigation";
 import styled from "styled-components";
 import "./App.css";
+import BlogComponent from "./components/BlogComponent";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          
+          {/* 블로그 */}
+          <Route exact path="/blogView/:id" component={BlogComponent} />
         </Routes>
       </Div>
     </BrowserRouter>
