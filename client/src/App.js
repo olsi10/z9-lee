@@ -22,9 +22,9 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
-          
+
           {/* 블로그 */}
-          <Route exact path="/blogView/:id" component={BlogComponent} />
+          <Route exact path="/blogView/:id" element={<BlogComponent />} />
         </Routes>
       </Div>
     </BrowserRouter>
