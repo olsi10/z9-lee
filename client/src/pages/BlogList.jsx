@@ -54,7 +54,7 @@ const Box = styled.div`
 `;
 
 const Container = styled.div`
-  width: 640px;
+  width: 600px;
   margin: 0px 30px 90px 30px;
   padding: 10px;
 
@@ -62,7 +62,7 @@ const Container = styled.div`
     display: flex;
     padding: 0;
     margin: 10px auto;
-    font-size: 20px;
+    font-size: 18px;
     font-family: inter;
     font-weight: 500;
     color: #515151;
@@ -72,7 +72,7 @@ const Container = styled.div`
     width: 100%;
   }
   span {
-    font-size: 30px;
+    font-size: 24px;
     font-family: Noto;
     font-weight: 700;
   }

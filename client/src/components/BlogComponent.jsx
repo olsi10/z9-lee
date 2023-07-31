@@ -9,6 +9,7 @@ import blog3 from "../assets/blog/blog3.png";
 import blog4 from "../assets/blog/blog4.png";
 import blog5 from "../assets/blog/blog5.png";
 import blog6 from "../assets/blog/blog6.png";
+import underImg from "../assets/blog/blog-under1.png";
 
 const BlogComponent = ({ history, location, match }) => {
   const [data, setData] = useState({});
@@ -45,6 +46,12 @@ const BlogComponent = ({ history, location, match }) => {
                 <img src={imageUrl} alt="" />
               </div>
             </MainText>
+            <Footer>
+              <img src={underImg} alt="" />
+              <span>
+                {data.sub}
+              </span>
+            </Footer>
           </Container>
         ) : (
           "해당 게시글을 찾을 수 없습니다."
@@ -65,12 +72,13 @@ const Container = styled.div`
 
 const Top = styled.div`
   width: 100%;
-  height: 420px;
+  height: 425px;
   margin-bottom: 36px;
   overflow: hidden;
-
+  
   img {
     width: 100%;
+    transform: translate(50% -50%);
   }
 `;
 
@@ -99,10 +107,34 @@ const MainText = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 6fr 4fr;
-  margin: 170px auto;
+  margin: 70px auto 0px auto;
+  gap: 100px;
 
   img {
     filter: brightness(60%);
+  }
+
+  span {
+    white-space: pre-line;
+    line-height: 2;
+    margin-right: 20px;
+    font-family: Noto;
+    font-weight: 200;
+    font-size: 18px;
+  }
+`;
+
+const Footer = styled.div`
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  margin: 170px auto;
+  gap: 100px;
+
+  span {
+    white-space: pre-line;
+    font-family: inter;
+    font-weight: 500;
+    font-size: 24px;
   }
 `;
 

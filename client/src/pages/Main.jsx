@@ -6,9 +6,12 @@ import intro3 from "../assets/video/intro3.mp4";
 import intro4 from "../assets/video/intro4.mp4";
 import intro5 from "../assets/video/intro5.mp4";
 import scroll from "../assets/icons/scroll.png";
-import Product from "../components/Product";
-import productsData from "../json/product.json";
 import mainHand from "../assets/product/main-hand.png";
+import { products } from "../json/MianProduct";
+import blog1 from "../assets/product/product1.png";
+import blog2 from "../assets/product/product2.png";
+import blog3 from "../assets/product/product3.png";
+import blog4 from "../assets/product/product4.png";
 
 // 스크롤
 import { Element, Link } from "react-scroll";
@@ -30,12 +33,12 @@ const Main = () => {
     setRandomVid(videoArr[vidNum]);
   }
 
-  // product 이미지 불러오기
-  const [product, setProducts] = useState([]);
+  const [dataList, setDataList] = useState([]);
+
+  const imgArr = [blog1, blog2, blog3, blog4];
 
   useEffect(() => {
-    // JSON 파일에서 상품 데이터를 불러와 상태에 설정
-    setProducts(productsData);
+    setDataList(products);
   }, []);
 
   return (
@@ -68,8 +71,11 @@ const Main = () => {
         <ProductDiv>
           <p>지구리의 베스트 셀러</p>
           <ProductList>
-            {productsData.map((product, index) => (
-              <Product key={index} image={product.image} text={product.text} />
+            {dataList.map((product, index) => (
+              <ProductItem key={index}>
+                <img src={imgArr[index]} alt="" />
+                <p>{product.text}</p>
+              </ProductItem>
             ))}
           </ProductList>
         </ProductDiv>
@@ -82,7 +88,7 @@ const Main = () => {
           <DesDiv>
             <p>안전한 제조, 성분</p>
             <p>
-              ` 안전한 제조방법과 재료를 사용하여
+              안전한 제조방법과 재료를 사용하여
               <br />
               지구와 당신만을 위한 제품을 제작합니다. 걱정마세요!
             </p>
@@ -223,6 +229,21 @@ const Middle = styled.div`
     width: 100%;
     height: 500px;
     object-fit: cover;
+  }
+`;
+
+const ProductItem = styled.div`
+  display: block;
+  border: 1px solid #c7c7c7;
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    font-family: Noto;
+    font-weight: 200;
   }
 `;
 
