@@ -73,6 +73,7 @@ const Main = () => {
           <ProductList>
             {dataList.map((product, index) => (
               <ProductItem key={index}>
+                {/* 이미지 배열에 저장해서 불러오기 */}
                 <img src={imgArr[index]} alt="" />
                 <p>{product.text}</p>
               </ProductItem>
