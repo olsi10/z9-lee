@@ -11,8 +11,8 @@ const Navigation = () => {
       </Logo>
       <Item>
         <Link to="/shop">Shop</Link>
-        <Link to="/about">About</Link>
         <Link to="/blog">Blog</Link>
+        <Link to="/user">User</Link>
         <Link to="/contact">Contact</Link>
         <Cart>
           <Link to="/cart">

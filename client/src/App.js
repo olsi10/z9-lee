@@ -1,6 +1,6 @@
 import Main from "./pages/Main";
 import Shop from "./pages/Shop";
-import About from "./pages/About";
+import User from "./pages/User";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
@@ -18,9 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/user" element={<User />} />
           <Route path="/cart" element={<Cart />} />
 
           {/* 블로그 */}
