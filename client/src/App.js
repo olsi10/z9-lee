@@ -3,6 +3,7 @@ import Shop from "./pages/Shop";
 import User from "./pages/User";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Contact1 from "./pages/Contact1";
 import Cart from "./pages/Cart";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Nav from "./components/Navigation";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/contact1" element={<Contact1 />} />
           <Route path="/user" element={<User />} />
           <Route path="/cart" element={<Cart />} />
 
