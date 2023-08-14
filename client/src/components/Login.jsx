@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const FalseUser = ({ formData, handleChange }) => {
+const Login = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  // 서버로 전송
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("http://localhost:3001/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        console.log("유저 등록 성공");
+      } else {
+        console.error("유저 등록 실패");
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
   return (
     <Container>
-      <h1>비회원</h1>
-      <form>
+      <h1>로그인</h1>
+      <form onSubmit={handleSubmit}>
         <Box>
           <label>
             <span>*</span>
-            이d름:
-            <input type="text" value={formData.name} onChange={handleChange} />
-          </label>
-        </Box>
-        <Box>
-          <label>
-            <span>*</span>
-            전화번호:
-            <input type="text" value={formData.phone} onChange={handleChange} />
-          </label>
-        </Box>
-        <Box>
-          <label>
-            <span>*</span>
-            이메일:
+            이름:
             <input
               type="text"
-              name="email"
-              value={formData.email}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
             />
           </label>
@@ -35,17 +53,16 @@ const FalseUser = ({ formData, handleChange }) => {
         <Box>
           <label>
             <span>*</span>
-            가입 자격:
-            <select value={formData.role} onChange={handleChange}>
-              <option value="">자격 선택</option>
-              <option value="admin">관리자</option>
-              <option value="seller">판매자</option>
-              <option value="user">일반 회원</option>
-            </select>
+            전화번호:
+            <input
+              type="text"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
           </label>
         </Box>
-
-        <button>회원가입</button>
+        <input type="submit" value="로그인하기" />
       </form>
     </Container>
   );
@@ -112,8 +129,8 @@ const Box = styled.div`
     height: 58px;
     border-radius: 8px;
     border: 1px solid #dddddd !important;
-    margin-top: 8px;
+    margin-top: 8px !important;
   }
 `;
 
-export default FalseUser;
+export default Login;

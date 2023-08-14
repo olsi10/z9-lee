@@ -1,101 +1,66 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import TrueUser from "../components/TrueUser";
-import FalseUser from "../components/FalseUser";
+import React from "react";
+import { Link } from "react-router-dom";
+import { styled } from "styled-components";
+import login from "../assets/login/login.png";
+import signup from "../assets/login/signup.png";
 
 const User = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    role: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  // 사용자가 이미 등록된 회원인지 확인합니다.
-  const isUserRegistered = formData.email === "1234";
-
   return (
     <Container>
-      {isUserRegistered ? (
-        <TrueUser formData={formData} handleChange={handleChange} />
-      ) : (
-        <FalseUser formData={formData} handleChange={handleChange} />
-      )}
+      <Link to="/login">
+        <Box>
+          <p>로그인</p>
+          <img src={login} alt="" />
+        </Box>
+      </Link>
+      <Link to="/signup">
+        <Box>
+          <p>회원가입</p>
+          <img src={signup} alt="" />
+        </Box>
+      </Link>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 120px;
-
-  input {
-    font-family: "Noto Sans KR", "Noto Sans Korean", "Nanum Gothic", sans-serif !important;
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-    border: 0;
-    outline: none;
-    font-size: 10px;
-  }
-
-  input::placeholder {
-    color: #d9d9d9;
-  }
-  input::placeholder {
-    color: #d9d9d9;
-  }
+  gap: 30px;
+  width: 100%;
+  height: 100vh;
+  margin: 200px auto;
+  background: rgb(115, 189, 110);
+  background: linear-gradient(
+    0deg,
+    rgba(115, 189, 110, 1) 0%,
+    rgba(234, 240, 234, 1) 75%,
+    rgba(255, 255, 255, 1) 100%
+  );
 `;
 
 const Box = styled.div`
-  width: 50%;
-  margin: 20px auto;
-  position: relative;
+  width: 320px;
+  height: 320px;
+  font-family: Noto;
+  font-size: 24px;
+  border: 1px solid #9e9e9e;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
 
-  label {
-    display: inline-block;
-    top: -5px;
-    left: 14px;
-    padding: 10px;
-    background: white;
-    font-size: 14px;
-    color: #888;
-    font-weight: bold;
+  &:hover {
+    background-color: #eaf0ea;
+    transition: all 0.3s;
   }
 
-  span {
-    color: #da4841;
-    vertical-align: -1px;
-    margin-right: 3px;
+  p {
+    text-align: center;
   }
 
-  input {
-    width: 100%;
-    border: 1px solid #dddddd !important;
-    font-size: 1rem;
-    line-height: 1.45;
-    letter-spacing: -0.04rem;
-    border-radius: 8px;
-    padding: 16px;
-    margin-top: 12px;
-  }
-
-  select {
-    width: 164px;
-    height: 58px;
-    border-radius: 8px;
-    border: 1px solid #dddddd !important;
-    margin-top: 8px;
+  img {
+    width: 50%;
+    margin-left: 80px;
   }
 `;
 

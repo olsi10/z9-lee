@@ -7,7 +7,7 @@ const Contact = () => {
   // 서버로부터 상품 목록을 가져오는 함수
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/api/user");
+      const response = await axios.get("http://localhost:3001/user");
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
