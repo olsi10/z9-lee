@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     nickname: "",
@@ -29,6 +32,7 @@ const SignUp = () => {
 
       if (res.ok) {
         console.log("유저 등록 성공");
+        navigate("/login");
       } else {
         console.error("유저 등록 실패");
       }

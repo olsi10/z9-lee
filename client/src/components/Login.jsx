@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     phone: "",
   });
 
@@ -16,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3001/signup", {
+      const res = await fetch("http://localhost:3001/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,9 +28,10 @@ const Login = () => {
       });
 
       if (res.ok) {
-        console.log("유저 등록 성공");
+        console.log("로그인 성공");
+        navigate("/cart");
       } else {
-        console.error("유저 등록 실패");
+        console.error("로그인 실패 실패");
       }
     } catch (error) {
       console.error("Error", error);
@@ -41,11 +45,11 @@ const Login = () => {
         <Box>
           <label>
             <span>*</span>
-            이름:
+            이메일:
             <input
-              type="text"
-              name="name"
-              value={formData.name}
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
             />
           </label>
