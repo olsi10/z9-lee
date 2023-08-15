@@ -1,21 +1,20 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import img from "../assets/contact.png";
 
 const Contact1 = () => {
-    return (
-        <Container>
-            <img src={img} />
-        </Container>
-    );
+  return (
+    <Container>
+      <p>안녕하세요! ㅇㄹ님</p>
+    </Container>
+  );
 };
 
 const Container = styled.div`
+  width: 100%;
+
+  img {
     width: 100%;
-    
-    img {
-        width: 100%;
-    }
+  }
 `;
 
 export default Contact1;
