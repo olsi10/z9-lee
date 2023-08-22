@@ -32,7 +32,7 @@ const Login = () => {
 
       if (res.ok) {
         console.log("로그인 성공");
-        navigate("/cart");
+        navigate(`/cart?`);
       } else if (res.status === 401) {
         setErrorVisible(true);
       } else {

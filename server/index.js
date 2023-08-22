@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // 유저 회원가입 (등록)
 app.post("/signup", async (req, res) => {
-  const { name, nickname, phone, email, role } = req.body;
+  const { name, nickname, phone, email, role, hire_date } = req.body;
 
   try {
     const connection = await oracledb.getConnection(dbConfig);
@@ -42,8 +42,8 @@ app.post("/signup", async (req, res) => {
     }
 
     const insertQuery =
-      "INSERT INTO USERS (name, nickname, phone, email, role) VALUES (:name, :nickname, :phone, :email, :role)";
-    const insertBinds = { name, nickname, phone, email, role };
+      "INSERT INTO USERS (name, nickname, phone, email, role, hire_date) VALUES (:name, :nickname, :phone, :email, :role, TO_DATE(:hire_date, 'YYYY-MM-DD'))";
+    const insertBinds = { name, nickname, phone, email, role, hire_date };
 
     const insertResult = await connection.execute(insertQuery, insertBinds, {
       autoCommit: true,
