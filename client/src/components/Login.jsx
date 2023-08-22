@@ -10,6 +10,9 @@ const Login = () => {
     phone: "",
   });
 
+  // 중복 체크 확인하는 state변수
+  const [errorVisible, setErrorVisible] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -30,6 +33,8 @@ const Login = () => {
       if (res.ok) {
         console.log("로그인 성공");
         navigate("/cart");
+      } else if (res.status === 401) {
+        setErrorVisible(true);
       } else {
         console.error("로그인 실패 실패");
       }
@@ -41,6 +46,19 @@ const Login = () => {
   return (
     <Container>
       <h1>로그인</h1>
+      {errorVisible && (
+        <span
+          style={{
+            color: "red",
+            fontFamily: "noto",
+            fontWeight: 500,
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          이메일 또는 비밀번호가 틀렸습니다.
+        </span>
+      )}
       <form onSubmit={handleSubmit}>
         <Box>
           <label>

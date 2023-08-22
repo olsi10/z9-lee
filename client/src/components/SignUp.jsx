@@ -13,6 +13,9 @@ const SignUp = () => {
     role: "",
   });
 
+  // 중복 체크 확인하는 state변수
+  const [errorVisible, setErrorVisible] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -33,6 +36,10 @@ const SignUp = () => {
       if (res.ok) {
         console.log("유저 등록 성공");
         navigate("/login");
+      }
+      // 중복되는 정보일 경우
+      else if (res.status === 400) {
+        setErrorVisible(true); // 에러 메세지 표시
       } else {
         console.error("유저 등록 실패");
       }
@@ -45,6 +52,19 @@ const SignUp = () => {
     <Container>
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit}>
+        {errorVisible && (
+          <span
+            style={{
+              color: "red",
+              fontFamily: "noto",
+              fontWeight: 500,
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            이미 존재하는 별명, 이메일입니다.
+          </span>
+        )}
         <Box>
           <label>
             <span>*</span>

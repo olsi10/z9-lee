@@ -28,7 +28,7 @@ app.post("/signup", async (req, res) => {
 
     // 중복 체크를 위한 쿼리
     const duplicateCheckQuery =
-      "SELECT COUNT(*) FROM users WHERE nickname = :nickname OR email = :email";
+      "SELECT COUNT(*) FROM USERS WHERE nickname = :nickname OR email = :email";
     const duplicateCheckBinds = { nickname, email };
     const duplicateCheckResult = await connection.execute(
       duplicateCheckQuery,
@@ -42,7 +42,7 @@ app.post("/signup", async (req, res) => {
     }
 
     const insertQuery =
-      "INSERT INTO users (name, nickname, phone, email, role) VALUES (:name, :nickname, :phone, :email, :role)";
+      "INSERT INTO USERS (name, nickname, phone, email, role) VALUES (:name, :nickname, :phone, :email, :role)";
     const insertBinds = { name, nickname, phone, email, role };
 
     const insertResult = await connection.execute(insertQuery, insertBinds, {
