@@ -13,8 +13,6 @@ const Navigation = () => {
         <Link to="/shop">Shop</Link>
         <Link to="/blog">Blog</Link>
         <Link to="/user">User</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/contact1">Contact1</Link>
         <Cart>
           <Link to="/cart">
             <img src={cart} alt="장바구니" />0

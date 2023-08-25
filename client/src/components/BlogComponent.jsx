@@ -48,10 +48,12 @@ const BlogComponent = ({ history, location, match }) => {
             </MainText>
             <Footer>
               <img src={underImg} alt="" />
-              <span>
-                {data.sub}
-              </span>
+              <span>{data.sub}</span>
             </Footer>
+
+            <button>삭제</button>
+            <button>수정</button>
+            <button>신고</button>
           </Container>
         ) : (
           "해당 게시글을 찾을 수 없습니다."
@@ -75,7 +77,7 @@ const Top = styled.div`
   height: 425px;
   margin-bottom: 36px;
   overflow: hidden;
-  
+
   img {
     width: 100%;
     transform: translate(50% -50%);

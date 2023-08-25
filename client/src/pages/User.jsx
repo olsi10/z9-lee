@@ -44,7 +44,7 @@ const Box = styled.div`
   height: 320px;
   font-family: Noto;
   font-size: 24px;
-  border: 1px solid #9e9e9e;
+  border: 1px solid #000000;
   border-radius: 20px;
   margin: 20px;
   padding: 20px;

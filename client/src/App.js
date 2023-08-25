@@ -12,6 +12,8 @@ import Nav from "./components/Navigation";
 import styled from "styled-components";
 import "./App.css";
 import BlogComponent from "./components/BlogComponent";
+import ShopProduct from "./components/ShopProduct";
+import ProductAdd from "./components/ProductAdd";
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
           <Route path="/contact1" element={<Contact1 />} />
           <Route path="/user" element={<User />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/add" element={<ProductAdd />} />
+
+          {/* 상품 상세 페이지 */}
+          <Route path="/product/:id" element={<ShopProduct />} />
 
           {/* 블로그 */}
           <Route exact path="/blogView/:id" element={<BlogComponent />} />
