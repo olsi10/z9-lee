@@ -10,7 +10,6 @@ const SignUp = () => {
     nickname: "",
     phone: "",
     email: "",
-    role: "",
   });
 
   // 중복 체크 확인하는 state변수
@@ -111,17 +110,6 @@ const SignUp = () => {
               value={formData.email}
               onChange={handleChange}
             />
-          </label>
-        </Box>
-        <Box>
-          <label>
-            <span>*</span>
-            가입 자격:
-            <select name="role" value={formData.role} onChange={handleChange}>
-              <option value="no">자격 선택</option>
-              <option value="seller">판매자</option>
-              <option value="user">일반 회원</option>
-            </select>
           </label>
         </Box>
         <input type="submit" value="가입하기" />

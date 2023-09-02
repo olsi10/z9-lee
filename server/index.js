@@ -12,17 +12,6 @@ app.use(
   })
 );
 
-app.use(
-  session({
-    secret: "frog",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 3600000,
-    },
-  })
-);
-
 const dbConfig = {
   user: "ZGOOLEE",
   password: "1234",
@@ -34,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // 유저 회원가입 (등록)
 app.post("/signup", async (req, res) => {
-  const { name, nickname, phone, email, role, hire_date } = req.body;
+  const { name, nickname, phone, email, hire_date } = req.body;
 
   try {
     const connection = await oracledb.getConnection(dbConfig);
@@ -62,12 +51,11 @@ app.post("/signup", async (req, res) => {
       nickname,
       phone,
       email,
-      role,
       hire_date: currentDate,
     };
 
     const insertQuery =
-      "INSERT INTO USERS (name, nickname, phone, email, role, hire_date) VALUES (:name, :nickname, :phone, :email, :role, TO_DATE(:hire_date, 'YYYY-MM-DD'))";
+      "INSERT INTO USERS (name, nickname, phone, email, hire_date) VALUES (:name, :nickname, :phone, :email, :hire_date)";
 
     const insertResult = await connection.execute(insertQuery, insertBinds, {
       autoCommit: true,
@@ -79,7 +67,6 @@ app.post("/signup", async (req, res) => {
       nickname,
       phone,
       email,
-      role,
       hire_date,
     };
 
@@ -113,34 +100,16 @@ app.post("/login", async (req, res) => {
     if (result.rows.length === 1) {
       console.log("로그인 성공"); // 유저 정보를 담고 있는 객체를 json응답으로 반환
 
-      // 유저 정보 가져오고
-      const user = result.rows[0];
-      req.session.user = user;
-
-      res.status(200).json({ message: "로그인 성공", user: user });
+      res.status(200).json({ message: "로그인 성공" });
     } else {
       console.log("로그인 실패");
       res.status(401).json({ message: "로그인 실패" });
     }
 
-    connection.close();
+    await connection.close();
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ message: "Error logging in" });
-  }
-});
-
-// 로그인된 유저의 정보 가져오기
-app.get("/cart", (req, res) => {
-  if (req.session.user) {
-    const user = req.session.user;
-    // 가져오기
-    const { id, name, email, phone, role, hire_date } = user;
-
-    res.send(`안녕 ${name}, 너의 정보 : ${JSON.stringify(user)}`);
-  } else {
-    console.log("안됨");
-    res.status(401).send("안댐");
   }
 });
 
@@ -174,6 +143,8 @@ app.get("/products", async (req, res) => {
     const result = await connection.execute(
       `SELECT * FROM products ORDER BY ${orderBy}`
     );
+
+    console.log(result);
 
     const cnt = await connection.execute("SELECT COUNT(*) FROM PRODUCTS");
 
@@ -224,62 +195,64 @@ app.post("/product", async (req, res) => {
   }
 });
 
-// // 상품 수정
-// app.put("/product/:id", async (req, res) => {
-//   try {
-//     const productId = req.params.id;
-//     const { name, price, inventory, description, imageUrl } = req.body;
+// 상품 수정
+app.put("/product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const { name, price, inventory, description, imageUrl } = req.body;
 
-//     const connection = await oracledb.getConnection(dbConfig);
+    const connection = await oracledb.getConnection(dbConfig);
 
-//     const query = `
-//       UPDATE products
-//       SET name = :name, price = :price, inventory = :inventory, description = :description, image_url = :imageUrl
-//       WHERE id = :productId
-//     `;
+    const query = `
+      UPDATE products
+      SET name = :name, price = :price, inventory = :inventory, description = :description, image_url = :imageUrl
+      WHERE id = :productId
+    `;
 
-//     const binds = {
-//       productId,
-//       name,
-//       price,
-//       inventory,
-//       description,
-//       imageUrl,
-//     };
+    const binds = {
+      productId,
+      name,
+      price,
+      inventory,
+      description,
+      imageUrl,
+    };
 
-//     await connection.execute(query, binds, { autoCommit: true });
-//     await connection.close();
+    await connection.execute(query, binds, { autoCommit: true });
+    await connection.close();
 
-//     res.status(200).json({ message: "상품 수정 완료" });
-//   } catch (error) {
-//     console.error("Error updating product:", error);
-//     res.status(500).json({ error: "에러 발생" });
-//   }
-// });
+    res.status(200).json({ message: "상품 수정 완료" });
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ error: "에러 발생" });
+  }
+});
 
-// // 상품 삭제
-// app.delete("/product/:id", async (req, res) => {
-//   try {
-//     const productId = req.params.id;
+// 상품 삭제
+app.delete("/product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
 
-//     const connection = await oracledb.getConnection(dbConfig);
+    const connection = await oracledb.getConnection(dbConfig);
 
-//     const query = `
-//       DELETE FROM products
-//       WHERE id = :productId
-//     `;
+    const query = `
+      DELETE FROM products
+      WHERE id = :productId
+    `;
 
-//     const binds = { productId };
+    const binds = { productId };
 
-//     await connection.execute(query, binds, { autoCommit: true });
-//     await connection.close();
+    await connection.execute(query, binds, { autoCommit: true });
+    const updated = await connection.execute("SELECT * FROM products");
 
-//     res.status(200).json({ message: "상품 삭제 완료" });
-//   } catch (error) {
-//     console.error("Error deleting product:", error);
-//     res.status(500).json({ error: "에러 발생" });
-//   }
-// });
+    await connection.close();
+
+    res.status(200).json({ message: "상품 삭제 완료", products: updated });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ error: "에러 발생" });
+  }
+});
 
 // 개별 상품 정보 가져오기
 app.get("/product/:id", async (req, res) => {

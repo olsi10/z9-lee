@@ -29,8 +29,6 @@ const Shop = () => {
           response.data;
         setProducts(dataProducts);
         setTotal(dataTotalCount);
-        setHighestPriceProduct(highestPriceProduct);
-        setLowestPriceProduct(lowestPriceProduct);
       } catch (error) {
         console.error(error);
       }
